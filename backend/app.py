@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-import sys, io
-# Force UTF-8 stdout so Windows console doesn't choke on special chars
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
-sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+import sys, io, os
+# Force UTF-8 stdout on Windows only (not in serverless environments)
+if os.name == 'nt' and hasattr(sys.stdout, 'buffer'):
+    try:
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
