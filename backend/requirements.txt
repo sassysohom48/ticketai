@@ -1,0 +1,8 @@
+flask==3.0.2
+flask-cors==4.0.0
+numpy==1.26.4
+gunicorn==21.2.0
+
+# Optional: uncomment for real BERT inference
+# transformers==4.38.2
+# torch==2.2.1

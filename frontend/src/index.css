@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans antialiased transition-colors duration-300;
+  }
+}
+
+@layer components {
+  /* Glass card */
+  .glass {
+    @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl
+           border border-white/30 dark:border-gray-700/50
+           shadow-xl shadow-black/5 dark:shadow-black/20;
+  }
+
+  /* Page gradient background */
+  .page-bg {
+    @apply bg-gradient-to-br from-indigo-50 via-white to-purple-50
+           dark:from-gray-950 dark:via-gray-900 dark:to-slate-950
+           min-h-screen;
+  }
+
+  /* Input base */
+  .input-base {
+    @apply w-full px-4 py-3 rounded-xl
+           border border-gray-200 dark:border-gray-700
+           bg-white dark:bg-gray-800/80
+           text-gray-900 dark:text-white
+           placeholder-gray-400 dark:placeholder-gray-500
+           focus:outline-none focus:ring-2 focus:ring-indigo-500/70
+           focus:border-transparent transition-all duration-200;
+  }
+
+  /* Primary gradient button */
+  .btn-primary {
+    @apply flex items-center justify-center gap-2
+           px-6 py-3 rounded-xl font-semibold text-white
+           bg-gradient-to-r from-indigo-600 to-purple-600
+           hover:from-indigo-700 hover:to-purple-700
+           disabled:opacity-50 disabled:cursor-not-allowed
+           shadow-lg shadow-indigo-500/25
+           hover:shadow-indigo-500/40 hover:-translate-y-0.5
+           transition-all duration-200;
+  }
+
+  /* Secondary outline button */
+  .btn-secondary {
+    @apply flex items-center justify-center gap-2
+           px-5 py-2.5 rounded-xl font-medium
+           text-gray-600 dark:text-gray-300
+           border border-gray-200 dark:border-gray-700
+           hover:bg-gray-50 dark:hover:bg-gray-800
+           hover:-translate-y-0.5 transition-all duration-200;
+  }
+
+  /* Department badge pill */
+  .dept-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1
+           rounded-full text-sm font-semibold;
+  }
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar          { width: 6px; height: 6px; }
+::-webkit-scrollbar-track    { @apply bg-transparent; }
+::-webkit-scrollbar-thumb    { @apply bg-gray-300 dark:bg-gray-600 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-gray-400 dark:bg-gray-500; }
+
+/* ── Custom animations ─────────────────────────────────────────────────── */
+@keyframes widthGrow {
+  from { width: 0%; }
+  to   { width: var(--tw, 0%); }
+}
+
+.bar-animate {
+  animation: widthGrow 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.25) 50%,
+    transparent 100%
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.6s infinite;
+}
+
+/* ── Confetti ring on success ──────────────────────────────────────────── */
+@keyframes ringPulse {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.ring-pulse {
+  animation: ringPulse 0.8s ease-out forwards;
+}
+
+/* ── Gradient text utility ─────────────────────────────────────────────── */
+.text-gradient {
+  @apply bg-gradient-to-r from-indigo-600 to-purple-600
+         bg-clip-text text-transparent;
+}
+
+/* ── Floating particles background (hero) ──────────────────────────────── */
+.hero-dots {
+  background-image: radial-gradient(circle, #6366f120 1px, transparent 1px);
+  background-size: 28px 28px;
+}

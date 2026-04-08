@@ -1,0 +1,8 @@
+flask==3.0.2
+flask-cors==4.0.0
+numpy==1.26.4
+
+# ── Optional: uncomment for real BERT inference ──────────────────────────────
+# transformers==4.38.2
+# torch==2.2.1          # CPU-only: torch==2.2.1+cpu (see README)
+# sentencepiece==0.2.0

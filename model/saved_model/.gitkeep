@@ -1,0 +1,8 @@
+# Place your fine-tuned BERT model files here:
+#   config.json
+#   pytorch_model.bin  (or model.safetensors)
+#   tokenizer_config.json
+#   vocab.txt
+#
+# The backend will auto-detect and load from this directory.
+# If empty, it falls back to zero-shot BERT or keyword-BERT.
