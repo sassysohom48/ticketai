@@ -14,13 +14,35 @@ const client = axios.create({
   headers: { 'Content-Type': 'application/json' },
 })
 
+// Attach JWT token from localStorage on every request
+client.interceptors.request.use(config => {
+  const token = localStorage.getItem('ticketai_token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
+
 export const api = {
+  // ── Auth ────────────────────────────────────────────────────
+  login: (username, password) =>
+    client.post('/auth/login', { username, password }).then(r => r.data),
+
+  register: (username, password, email, phone) =>
+    client.post('/auth/register', { username, password, email, phone }).then(r => r.data),
+
+  // ── Core ────────────────────────────────────────────────────
   health: () =>
     client.get('/health').then(r => r.data),
 
   predict: (subject, message) =>
     client.post('/predict', { subject, message }).then(r => r.data),
 
+  // ── User ────────────────────────────────────────────────────
+  getUserTickets: () =>
+    client.get('/user/tickets').then(r => r.data),
+
+  // ── Admin ───────────────────────────────────────────────────
   getTickets: (department = 'All') =>
     client.get('/tickets', { params: { department } }).then(r => r.data),
 

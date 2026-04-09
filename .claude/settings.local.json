@@ -13,7 +13,8 @@
       "Bash(python -c ':*)",
       "Bash(vercel --version)",
       "Bash(npm list:*)",
-      "Bash(npm --version)"
+      "Bash(npm --version)",
+      "Bash(python -c \"import jwt; print\\('PyJWT OK:', jwt.__version__\\)\")"
     ]
   }
 }

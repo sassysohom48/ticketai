@@ -7,6 +7,8 @@ export default defineConfig({
     port: 3000,
     // Proxy all backend routes to Flask in development
     proxy: {
+      '/auth':        { target: 'http://localhost:5000', changeOrigin: true },
+      '/user':        { target: 'http://localhost:5000', changeOrigin: true },
       '/predict':     { target: 'http://localhost:5000', changeOrigin: true },
       '/health':      { target: 'http://localhost:5000', changeOrigin: true },
       '/tickets':     { target: 'http://localhost:5000', changeOrigin: true },
